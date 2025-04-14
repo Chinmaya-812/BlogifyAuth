@@ -77,7 +77,6 @@ const viewPostByUser = asyncHandler(async (req, res) => {
         {
             $project: {
                 username: 1,
-                fullname: 1,
                 email: 1,
                 allPosts: {
                     $map: {                     // Map over allPosts array
@@ -165,8 +164,9 @@ const updatePost = asyncHandler(async (req, res) => {
     // console.log("Exist :-> ", isPostExistForUser);
 
 
-    const updatedPostResults = isPostExistForUser ? await Post.findByIdAndUpdate(req.params.id, { title, content }, { new: true }).select("-user")
-        : false;
+    const updatedPostResults = (isPostExistForUser ? await Post.findByIdAndUpdate(req.params.id, { title, content }, { new: true }).select("-user -__v -ContentImage -_id")
+        : false);
+    
 
 
     if (!updatedPostResults) {
@@ -188,7 +188,12 @@ const getAllPost = asyncHandler(async (req, res) => {
 
     console.log(passwordValidate);
 
-    // const checkAdminUser = (loginUser?.username == ADMIN_USER.username) ?
+    const allPosts = passwordValidate ? await User.find().select("-password -refreshToken")
+        : false;
+
+    if (!allPosts) {
+        throw new ApiError(404, "Access restricted. Only ADMIN users can view all Users !")
+    }
 
     const posts = await Post.find({}).select("-user")
 
