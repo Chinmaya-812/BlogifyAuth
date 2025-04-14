@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Dummy API",
+    "title": "BlogifyAuth",
     "version": "1.0.0",
-    "description": "A simple dummy API for testing Swagger UI"
+    "description": "A RESTful API that allows users to create, update, and manage their personal vlogs. Each user can publish, edit, and delete blog entries securely from their own account."
   },
   "tags": [
     {
