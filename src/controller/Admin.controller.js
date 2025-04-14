@@ -45,6 +45,9 @@ const getAllPost = asyncHandler(async (req, res) => {
 
 
 const getAllUsers = asyncHandler(async (req, res) => {
+    console.log(req.ADMINUSER);
+    console.log(req.user);
+    
 
     const passwordValidate = await comparePasswords(ADMIN_USER.password, req.ADMINUSER.password)
 

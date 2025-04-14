@@ -1,15 +1,22 @@
-import { Router } from "express";
-import { createNewPost, deletePost, updatePost, viewPostByUser } from "../controller/post.controller.js";
+import express from "express";
+import { createNewPost, deletePost, getAllPost, updatePost, viewPostByUser } from "../controller/post.controller.js";
 import { verifyJWT } from "../middleware/auth.middleware.js";
+import { upload } from "../middleware/multer.middleware.js";
 
 
 
-const router = Router();
-
-// router.route("/createPost").post(upload.single('ContentImage'), verifyJWT, createNewPost)
-// router.route("/viewPost").get(verifyJWT, viewPostByUser)
-// router.route("/deletePost/:id").delete(verifyJWT, deletePost)
-// router.route("/updatePost/:id").patch(verifyJWT, updatePost)
+const postRouter = express.Router();
 
 
-export default router
+
+postRouter.route("/createPost").post(upload.single('ContentImage'), verifyJWT, createNewPost)
+postRouter.route("/viewPost").get(verifyJWT, viewPostByUser)
+postRouter.route("/deletePost/:id").delete(verifyJWT, deletePost)
+
+postRouter.route("/updatePost/:id").patch(verifyJWT, updatePost)
+
+postRouter.route("/getAllPost").get(verifyJWT, getAllPost)
+
+
+
+export default postRouter;
