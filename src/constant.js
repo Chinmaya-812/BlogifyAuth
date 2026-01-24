@@ -29,3 +29,6 @@ export const ADMIN_USER = {
 // REFRESH_TOEKN_SECRET=Chinmaya-VlogsPost-Express-Refresh
 // REFRESH_TOKEN_EXPIRY=30d
 
+
+// EMAIL_PASS=gzty igxo bhjm yxfm
+
