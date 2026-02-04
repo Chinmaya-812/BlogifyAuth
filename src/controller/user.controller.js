@@ -172,7 +172,7 @@ const sendOtp = asyncHandler(async (req, res) => {
 
     otpStore.set(key, { otp, expiresAt });
 
-    console.log(otpStore);
+    // console.log(otpStore);
 
     await sendOtpEmail(email, otp)
 
@@ -225,4 +225,4 @@ const verifyOtp = async (req, res) => {
 
 
 
-export { registerUser, loginUser, logoutUser, getCurrentUser, sendOtp, verifyOtp };
+export { registerUser, loginUser, logoutUser, getCurrentUser, sendOtp, verifyOtp,generateAccessAndRefreshTokens };
